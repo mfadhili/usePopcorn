@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {tempMovieData} from "../data/TempMovieData";
 
-export function ListBox() {
-    const [movies, setMovies] = useState(tempMovieData);
+export function ListBox({movies}) {
+
     const [isOpen1, setIsOpen1] = useState(true);
 
     return (

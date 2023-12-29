@@ -1,12 +1,12 @@
 import {useState} from "react";
 
-export function Navbar() {
+export function Navbar({movies}) {
 
     return (
         <nav className="nav-bar">
             <Logo/>
-            <SearchBar/>
-            <SearchResults/>
+            <SearchBar />
+            <SearchResults movies={movies}/>
         </nav>
     );
 
@@ -36,10 +36,10 @@ function SearchBar() {
     );
 }
 
-function SearchResults() {
+function SearchResults({movies}) {
     return (
         <p className="num-results">
-            Found <strong>movies.length</strong> results
+            Found <strong>{movies.length}</strong> results
         </p>
     );
 }
