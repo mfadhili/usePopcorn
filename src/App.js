@@ -13,7 +13,6 @@ export default function App() {
             <SearchResults movies={movies}/>
         </Navbar>
         <Main movies={movies}>
-
         </Main>
       </>
   );
