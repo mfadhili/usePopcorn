@@ -6,13 +6,28 @@ import {WatchedList} from "./WatchedListItem";
 import {useState} from "react";
 import {tempWatchedData} from "../data/TempMovieData";
 
-export function Main({movies}) {
+function LoadingIndicator() {
+    return (
+        <p className={"loader"}>
+            Loading...
+        </p>
+    );
+}
+
+export function Main({movies,isLoading,loadError}) {
     const [watched, setWatched] = useState(tempWatchedData);
 
     return (
         <main className="main">
             <Box>
-                <List movies={movies}/>
+                {/*{isLoading ?
+                    <LoadingIndicator/>
+                    :
+                    <List movies={movies}/>
+                }*/}
+                { isLoading && <LoadingIndicator/> }
+                {!isLoading && !loadError && <List movies={movies}/> }
+                { loadError && <ErrorMessage message={loadError}/> }
             </Box>
             <Box>
                 <>
@@ -24,3 +39,11 @@ export function Main({movies}) {
     );
 }
 
+// Simple presentational component
+function ErrorMessage({message}) {
+    return (
+        <p className={"error"}>
+            <span>Error</span> {message}
+        </p>
+    );
+}

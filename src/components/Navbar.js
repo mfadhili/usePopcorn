@@ -20,8 +20,8 @@ export function Logo() {
     );
 }
 
-export function SearchBar() {
-    const [query, setQuery] = useState("");
+export function SearchBar({query, setQuery}) {
+
 
     return (
         <input
@@ -37,7 +37,7 @@ export function SearchBar() {
 export function SearchResults({movies}) {
     return (
         <p className="num-results">
-            Found <strong>{movies.length}</strong> results
+            {/*Found <strong>{movies.length}</strong> results*/}
         </p>
     );
 }
