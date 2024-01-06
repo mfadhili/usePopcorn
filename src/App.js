@@ -5,6 +5,7 @@ import {tempMovieData} from "./data/TempMovieData";
 
 const KEY = `86ab25f8`
 
+
 export default function App() {
     const [movies, setMovies] = useState([]);
     const [query, setQuery] = useState("");
@@ -30,6 +31,7 @@ export default function App() {
     */
 
 
+
     useEffect(
         function () {
             async function fetchMovies() {
@@ -51,7 +53,7 @@ export default function App() {
                         throw new Error("Movie not found")
                     }
 
-                    console.log(data.Search)
+                    console.log(data.Search);
 
                     setMovies(data.Search);
                     setIsLoading(false);
@@ -84,8 +86,7 @@ export default function App() {
             <SearchBar query={query} setQuery={setQuery}/>
             <SearchResults movies={movies}/>
         </Navbar>
-        <Main movies={movies} isLoading={isLoading} loadError={loadErr}>
-        </Main>
+        <Main movies={movies} isLoading={isLoading} loadError={loadErr}  />
       </>
   );
 }

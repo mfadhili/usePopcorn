@@ -18,19 +18,19 @@ export function ListBox({children}) {
     );
 }
 
-export function List({movies}) {
+export function List({movies, handleSelection}) {
     return (
-        <ul className="list">
+        <ul className="list list-movies">
             {movies?.map((movie) => (
-                <ListItem movie={movie} key={movie.imdbID}/>
+                <ListItem movie={movie} key={movie.imdbID} handleSelection={handleSelection} />
             ))}
         </ul>
     );
 }
 
-function ListItem({movie}) {
+function ListItem({movie, handleSelection}) {
     return (
-        <li>
+        <li onClick={() => handleSelection(movie.imdbID)}>
             <img src={movie.Poster} alt={`${movie.Title} poster`}/>
             <h3>{movie.Title}</h3>
             <div>
