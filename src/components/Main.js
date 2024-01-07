@@ -5,6 +5,7 @@ import {Summary} from "./Summary";
 import {WatchedList} from "./WatchedListItem";
 import {useEffect, useState} from "react";
 import {tempWatchedData} from "../data/TempMovieData";
+import StarRating from "./StarRating";
 
 const demoId = 'tt0075148'
 const KEY = `86ab25f8`
@@ -87,6 +88,9 @@ function ItemDetails({selectedId, onUnSelection}) {
                 </div>
             </header>
             <section>
+                <div className="rating">
+                   <StarRating maxRating={10} size={24}/>
+                </div>
                 <p><em>{plot}</em></p>
                 <p>Starring {actors}</p>
                 <p>Directed by {director}</p>
