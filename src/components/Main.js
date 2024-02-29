@@ -8,8 +8,8 @@ import {tempWatchedData} from "../data/TempMovieData";
 import StarRating from "./StarRating";
 import {queryByTitle} from "@testing-library/react";
 
-const demoId = 'tt0075148'
-const KEY = `86ab25f8`
+const demoId = 'tt0075148';
+const KEY = `86ab25f8`;
 
 export function Main({movies,isLoading,loadError}) {
     // const [watched, setWatched] = useState(tempWatchedData);
@@ -27,7 +27,7 @@ export function Main({movies,isLoading,loadError}) {
     }
 
     function handleAddWatched(newMovie) {
-        const doesIdExist = watched.some(movie => movie.imdbID === newMovie.imdbID)
+        let doesIdExist = watched.some(movie => movie.imdbID === newMovie.imdbID);
 
         if (!doesIdExist)
         {
@@ -38,6 +38,20 @@ export function Main({movies,isLoading,loadError}) {
     function handleDeleteWatched(id) {
         setWatched(watched => watched.filter((movie) => movie.imdbID !== id))
     }
+
+    useEffect(() => {
+        // ALLOW LISTEN TO ESCAPE KEY TO EXIT SELECTED MOVIE
+        function callback(e) {
+            if (e.code === 'Escape') {
+                handleUnSelection();
+            }
+        }
+
+        document.addEventListener('keydown', callback)
+        return function () {
+            document.removeEventListener('keydown',callback);
+        };
+    }, [handleUnSelection])
 
     return (
         <main className="main">
@@ -87,7 +101,7 @@ function ItemDetails({selectedId, onUnSelection, onAddWatched, onDeleteWatched})
             setMovieItem(data)
         }
         getItemDetails();
-    }, []);
+    }, [selectedId]);
 
     function handleAdd() {
         const newMovie = {

@@ -32,6 +32,7 @@ export default function App() {
 
 
 
+
     useEffect(
         function () {
             //  USE ABORT CONTROLLER TO AVOID RACE CONDITIONS ON THE DATA FETCHING
