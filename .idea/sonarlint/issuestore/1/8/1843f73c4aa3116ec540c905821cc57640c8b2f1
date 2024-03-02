@@ -1,14 +1,11 @@
 
-Jjavascript:S1128"'Remove this unused import of 'ListBox'.(Î’Âİ8˜”Šß1
-Mjavascript:S1128"*Remove this unused import of 'WatchedBox'.( º¸æ8‚˜”Šß1
-Qjavascript:S1128"/Remove this unused import of 'tempWatchedData'.(ˆôßA8‚˜”Šß1
-Ojavascript:S1128	",Remove this unused import of 'queryByTitle'.(ß’“ã8‚˜”Šß1
-Ijavascript:S6774"''movies' is missing in props validation(¶—•e8‚˜”Šß1
-Ljavascript:S6774"*'isLoading' is missing in props validation(¶—•e8ƒ˜”Šß1
-Ljavascript:S6774"*'loadError' is missing in props validation(¶—•e8ƒ˜”Šß1
-Fjavascript:S125"Remove this commented out code.(ÃùÛÌûÿÿÿÿ8ƒ˜”Šß1
-Sjavascript:S6774O"+'selectedId' is missing in props validation(ş×Ùÿÿÿÿÿ8ƒ˜”Šß1
-Vjavascript:S6774O".'onUnSelection' is missing in props validation(ş×Ùÿÿÿÿÿ8ƒ˜”Šß1
-Ujavascript:S6774O"-'onAddWatched' is missing in props validation(ş×Ùÿÿÿÿÿ8ƒ˜”Šß1
-Xjavascript:S6774O"0'onDeleteWatched' is missing in props validation(ş×Ùÿÿÿÿÿ8ƒ˜”Šß1
-Qjavascript:S6774§"('message' is missing in props validation(³½Ûşÿÿÿÿ8„˜”Šß1
+Ijavascript:S6774"''movies' is missing in props validation(¶—•e8İºóÿß1
+Ljavascript:S6774"*'isLoading' is missing in props validation(¶—•e8Şºóÿß1
+Ljavascript:S6774"*'loadError' is missing in props validation(¶—•e8Şºóÿß1
+Fjavascript:S125#"Remove this commented out code.(ï•ş§üÿÿÿÿ8Şºóÿß1
+Sjavascript:S6774T"+'selectedId' is missing in props validation(ş×Ùÿÿÿÿÿ8Şºóÿß1
+Vjavascript:S6774T".'onUnSelection' is missing in props validation(ş×Ùÿÿÿÿÿ8Şºóÿß1
+Ujavascript:S6774T"-'onAddWatched' is missing in props validation(ş×Ùÿÿÿÿÿ8Şºóÿß1
+Xjavascript:S6774T"0'onDeleteWatched' is missing in props validation(ş×Ùÿÿÿÿÿ8Şºóÿß1
+@javascript:S125g"Remove this commented out code.(ñÇ±S8Şºóÿß1
+Qjavascript:S6774³"('message' is missing in props validation(³½Ûşÿÿÿÿ8Şºóÿß1
