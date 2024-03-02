@@ -12,3 +12,5 @@ F
 src/App.js,1/e/1e43fa63aecd2127be034b3fb9d4caa172275714
 A
 public/index.html,f/4/f43ecdf8d666ee908aacce037b4cd72159e4741b
+H
+src/components/Navbar.js,2/d/2d4879a2b825dad8d007f4486bb3dca97c81dd6d
