@@ -1,19 +1,19 @@
-import {List, ListBox} from "./ListBox";
-import {WatchedBox} from "./WatchedBox";
+import {List} from "./ListBox";
 import {Box} from "./Box";
 import {Summary} from "./Summary";
 import {WatchedList} from "./WatchedListItem";
 import {useEffect, useState} from "react";
-import {tempWatchedData} from "../data/TempMovieData";
 import StarRating from "./StarRating";
-import {queryByTitle} from "@testing-library/react";
 
 const demoId = 'tt0075148';
 const KEY = `86ab25f8`;
 
 export function Main({movies,isLoading,loadError}) {
     // const [watched, setWatched] = useState(tempWatchedData);
-    const [watched, setWatched] = useState([]);
+    // const [watched, setWatched] = useState([]);
+    const [watched, setWatched] = useState(function () {
+        return JSON.parse(localStorage.getItem('watched'));
+    });
     const [selectedItemId, setSelectedItemId] = useState(null );
 
     function handleSelection(itemId) {
@@ -32,6 +32,8 @@ export function Main({movies,isLoading,loadError}) {
         if (!doesIdExist)
         {
             setWatched(watched=>[...watched,newMovie]);
+            // localStorage.setItem('watched',JS:wq
+            // ON.stringify([...watched, newMovie]));
         }
     }
 
@@ -51,7 +53,11 @@ export function Main({movies,isLoading,loadError}) {
         return function () {
             document.removeEventListener('keydown',callback);
         };
-    }, [handleUnSelection])
+    }, [handleUnSelection]);
+
+    useEffect(() => {
+        localStorage.setItem('watched',JSON.stringify(watched));
+    }, [watched]);
 
     return (
         <main className="main">
@@ -80,6 +86,8 @@ function ItemDetails({selectedId, onUnSelection, onAddWatched, onDeleteWatched})
     const [movieItem, setMovieItem] = useState({})
     const [userRating, setUserRating] = useState('')
 
+
+
     const {
         Title: title,
         Year: year,
@@ -92,6 +100,11 @@ function ItemDetails({selectedId, onUnSelection, onAddWatched, onDeleteWatched})
         Director: director,
         Genre: genre
     } = movieItem
+
+    // /*eslint-disablez*/
+    // if (imdbRating > 8 ) {
+    //     const [isTop, setIsTop] = useState(true);
+    // }
 
     useEffect(() => {
         async function getItemDetails() {
