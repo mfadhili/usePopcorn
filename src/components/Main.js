@@ -32,7 +32,8 @@ export function Main({movies,isLoading,loadError}) {
         if (!doesIdExist)
         {
             setWatched(watched=>[...watched,newMovie]);
-            // localStorage.setItem('watched',JSON.stringify([...watched, newMovie]));
+            // localStorage.setItem('watched',JS:wq
+            // ON.stringify([...watched, newMovie]));
         }
     }
 
