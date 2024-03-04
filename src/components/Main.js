@@ -1,30 +1,63 @@
-import {List, ListBox} from "./ListBox";
-import {WatchedBox} from "./WatchedBox";
+import {List} from "./ListBox";
 import {Box} from "./Box";
 import {Summary} from "./Summary";
 import {WatchedList} from "./WatchedListItem";
-import {useEffect, useState} from "react";
-import {tempWatchedData} from "../data/TempMovieData";
+import {useEffect, useRef, useState} from "react";
 import StarRating from "./StarRating";
 
-const demoId = 'tt0075148'
-const KEY = `86ab25f8`
+const demoId = 'tt0075148';
+const KEY = `86ab25f8`;
 
 export function Main({movies,isLoading,loadError}) {
-    const [watched, setWatched] = useState(tempWatchedData);
+    // const [watched, setWatched] = useState(tempWatchedData);
+    // const [watched, setWatched] = useState([]);
+    const [watched, setWatched] = useState(function () {
+        return JSON.parse(localStorage.getItem('watched'));
+    });
     const [selectedItemId, setSelectedItemId] = useState(null );
 
     function handleSelection(itemId) {
-
         setSelectedItemId((id) =>
             id === itemId ? null : itemId
         );
     }
 
-
     function handleUnSelection() {
         setSelectedItemId(null);
     }
+
+    function handleAddWatched(newMovie) {
+        let doesIdExist = watched.some(movie => movie.imdbID === newMovie.imdbID);
+
+        if (!doesIdExist)
+        {
+            setWatched(watched=>[...watched,newMovie]);
+            // localStorage.setItem('watched',JS:wq
+            // ON.stringify([...watched, newMovie]));
+        }
+    }
+
+    function handleDeleteWatched(id) {
+        setWatched(watched => watched.filter((movie) => movie.imdbID !== id))
+    }
+
+    useEffect(() => {
+        // ALLOW LISTEN TO ESCAPE KEY TO EXIT SELECTED MOVIE
+        function callback(e) {
+            if (e.code === 'Escape') {
+                handleUnSelection();
+            }
+        }
+
+        document.addEventListener('keydown', callback)
+        return function () {
+            document.removeEventListener('keydown',callback);
+        };
+    }, [handleUnSelection]);
+
+    useEffect(() => {
+        localStorage.setItem('watched',JSON.stringify(watched));
+    }, [watched]);
 
     return (
         <main className="main">
@@ -37,11 +70,11 @@ export function Main({movies,isLoading,loadError}) {
             <Box>
                 {/*RIGHT SIDE*/}
                 { selectedItemId ?
-                    <ItemDetails selectedId={selectedItemId} onUnSelection={handleUnSelection}/>
+                    <ItemDetails selectedId={selectedItemId} onUnSelection={handleUnSelection} onAddWatched={handleAddWatched} />
                     :
                     <>
                         <Summary watched={watched}/>
-                        <WatchedList watched={watched}/>
+                        <WatchedList watched={watched} onDeleteWatched={handleDeleteWatched}/>
                     </>
                 }
             </Box>
@@ -49,8 +82,17 @@ export function Main({movies,isLoading,loadError}) {
     );
 }
 
-function ItemDetails({selectedId, onUnSelection}) {
+function ItemDetails({selectedId, onUnSelection, onAddWatched, onDeleteWatched}) {
     const [movieItem, setMovieItem] = useState({})
+    const [userRating, setUserRating] = useState('')
+
+    const countRef = useRef(0);
+
+    useEffect(() => {
+        if (userRating){
+            countRef.current = countRef.current + 1;
+        }
+    }, [userRating]);
 
     const {
         Title: title,
@@ -64,6 +106,57 @@ function ItemDetails({selectedId, onUnSelection}) {
         Director: director,
         Genre: genre
     } = movieItem
+:q
+
+
+
+    :qq
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:
+
+
+
+
+        qw
+
+    // /*eslint-disablez*/
+    // if (imdbRating > 8 ) {
+    //     const [isTop, setIsTop] = useState(true);
+    // }
 
     useEffect(() => {
         async function getItemDetails() {
@@ -73,7 +166,35 @@ function ItemDetails({selectedId, onUnSelection}) {
             setMovieItem(data)
         }
         getItemDetails();
-    }, []);
+    }, [selectedId]);
+
+    function handleAdd() {
+        const newMovie = {
+            imdbID: selectedId,
+            title,
+            year,
+            poster,
+            imdbRating: Number(imdbRating),
+            runtime: Number(runtime.split(' ').at(0)),
+            userRating,
+            countRatingDecisions: countRef.current,
+        };
+
+        onAddWatched(newMovie);
+        onUnSelection();
+    }
+
+    /* SET TITLE OF WEB PAGE*/
+    useEffect(() => {
+        if (!title) return;
+        document.title = `Movie | ${title}`;
+
+    //     CLEANUP FUNCTION
+        return function () {
+            document.title = 'usePopcorn';
+            console.log(`cleanup effect for movie ${title}`); // closure
+        };
+    }, [title]);
 
     return (
         <div className={"details"}>
@@ -89,7 +210,8 @@ function ItemDetails({selectedId, onUnSelection}) {
             </header>
             <section>
                 <div className="rating">
-                   <StarRating maxRating={10} size={24}/>
+                   <StarRating maxRating={10} size={24} onSetRating={setUserRating}/>
+                    <button className={"btn-add"} onClick={handleAdd}>+ Add to list</button>
                 </div>
                 <p><em>{plot}</em></p>
                 <p>Starring {actors}</p>

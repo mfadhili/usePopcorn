@@ -29,7 +29,7 @@ const StarRating = ({
 
     function handleRating(rating) {
         setRating(rating);
-        onSetRating(rating);
+        //onSetRating(rating);
     }
 
     return (
@@ -48,10 +48,8 @@ const StarRating = ({
             </div>
             {/*SWITCHES TO EMPTY STRING WHEN THE RATING IS FALSY*/}
             <p style={textStyle}>
-                { messages.length === maxRating?
-                    messages[tempRating ? tempRating -1 : rating-1]
-                    :
-                    tempRating ? tempRating : rating || ""
+                {
+                   tempRating ? tempRating : rating
                 }
             </p>
         </div>

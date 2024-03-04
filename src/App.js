@@ -32,15 +32,19 @@ export default function App() {
 
 
 
+
     useEffect(
         function () {
+            //  USE ABORT CONTROLLER TO AVOID RACE CONDITIONS ON THE DATA FETCHING
+            const controller = new AbortController();
+
             async function fetchMovies() {
                 try {
                     setLoadErr("");
                     // Makes user aware that data is being fetched
-                    setIsLoading(true)
+                    setIsLoading(true);
 
-                    const res = await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${query}`);
+                    const res = await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${query}`, {signal: controller.signal});
                     const data = await res.json();
                     console.log(data)
 
@@ -57,10 +61,13 @@ export default function App() {
 
                     setMovies(data.Search);
                     setIsLoading(false);
+                    setLoadErr("");
                 }
                 catch (err) {
                     console.error(err.message);
-                    setLoadErr(err.message)
+                    if (err.name !== "AbortError"){
+                        setLoadErr(err.message) // ALLOWS IGNORING OF ABORT RACE CONDITIONS BEING CAPTURED AS AN ERROR
+                    }
                 }
                 finally {
                     setIsLoading(false);
@@ -73,6 +80,11 @@ export default function App() {
                 return
             }
             fetchMovies();
+
+        //     CLEAN UP FUNCTION
+            return function () {
+                controller.abort();
+            };
         }
    , [query]);
 
