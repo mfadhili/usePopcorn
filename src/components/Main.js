@@ -2,7 +2,7 @@ import {List} from "./ListBox";
 import {Box} from "./Box";
 import {Summary} from "./Summary";
 import {WatchedList} from "./WatchedListItem";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import StarRating from "./StarRating";
 
 const demoId = 'tt0075148';
@@ -86,7 +86,13 @@ function ItemDetails({selectedId, onUnSelection, onAddWatched, onDeleteWatched})
     const [movieItem, setMovieItem] = useState({})
     const [userRating, setUserRating] = useState('')
 
+    const countRef = useRef(0);
 
+    useEffect(() => {
+        if (userRating){
+            countRef.current = countRef.current + 1;
+        }
+    }, [userRating]);
 
     const {
         Title: title,
@@ -100,6 +106,52 @@ function ItemDetails({selectedId, onUnSelection, onAddWatched, onDeleteWatched})
         Director: director,
         Genre: genre
     } = movieItem
+:q
+
+
+
+    :qq
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:
+
+
+
+
+        qw
 
     // /*eslint-disablez*/
     // if (imdbRating > 8 ) {
@@ -125,6 +177,7 @@ function ItemDetails({selectedId, onUnSelection, onAddWatched, onDeleteWatched})
             imdbRating: Number(imdbRating),
             runtime: Number(runtime.split(' ').at(0)),
             userRating,
+            countRatingDecisions: countRef.current,
         };
 
         onAddWatched(newMovie);
