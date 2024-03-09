@@ -8,7 +8,7 @@ import StarRating from "./StarRating";
 const demoId = 'tt0075148';
 const KEY = `86ab25f8`;
 
-export function Main({movies,isLoading,loadError}) {
+export function Main({movgit ies,isLoading,loadError}) {
     // const [watched, setWatched] = useState(tempWatchedData);
     // const [watched, setWatched] = useState([]);
     const [watched, setWatched] = useState(function () {
