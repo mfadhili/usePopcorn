@@ -106,52 +106,6 @@ function ItemDetails({selectedId, onUnSelection, onAddWatched, onDeleteWatched})
         Director: director,
         Genre: genre
     } = movieItem
-:q
-
-
-
-    :qq
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-:
-
-
-
-
-        qw
 
     // /*eslint-disablez*/
     // if (imdbRating > 8 ) {
