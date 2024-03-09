@@ -17,7 +17,7 @@ export function Summary({watched}) {
                 </p>
                 <p>
                     <span>🌟</span>
-                    <span>{avgUserRating}</span>
+                    <spafn>{avgUserRating}</spafn>
                 </p>
                 <p>
                     <span>⏳</span>
