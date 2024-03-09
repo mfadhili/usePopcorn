@@ -20,3 +20,11 @@ L
 src/components/WatchedBox.js,2/7/27273e52032eb32a44fdd707b313e7e951e2ab8c
 I
 src/components/Summary.js,d/d/dd65e7a2324e9a4b2304f4e5e2e76d14622f5f02
+E
+src/components/Box.js,a/2/a2f5f491c93f8a532afd89f99d6cd6994f72871f
+F
+src/components/Box2.js,c/e/ce4514688acd53b5fbe5991d7152a1e8b1d31f60
+I
+src/components/ListBox.js,7/b/7b63abdbf1ceb6fe1958ef4e00aa199680d1a1a9
+P
+ src/components/hooks/useLocal.js,c/c/cc2c5f0e544de7ac2432e697570e66da8567e9b4

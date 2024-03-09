@@ -4,6 +4,7 @@ import {Summary} from "./Summary";
 import {WatchedList} from "./WatchedListItem";
 import {useEffect, useRef, useState} from "react";
 import StarRating from "./StarRating";
+import {useLocal} from "./hooks/useLocal";
 
 const demoId = 'tt0075148';
 const KEY = `86ab25f8`;
@@ -11,9 +12,12 @@ const KEY = `86ab25f8`;
 export function Main({movies,isLoading,loadError}) {
     // const [watched, setWatched] = useState(tempWatchedData);
     // const [watched, setWatched] = useState([]);
-    const [watched, setWatched] = useState(function () {
-        return JSON.parse(localStorage.getItem('watched'));
-    });
+
+    const [watched, setWatched] = useLocal([], 'watched')
+    /* RECALLS WATCHED STATE FROM LOCAL STORAGE */
+    // const [watched, setWatched] = useState(function () {
+    //     return JSON.parse(localStorage.getItem('watched'));
+    // });
     const [selectedItemId, setSelectedItemId] = useState(null );
 
     function handleSelection(itemId) {
@@ -55,9 +59,7 @@ export function Main({movies,isLoading,loadError}) {
         };
     }, [handleUnSelection]);
 
-    useEffect(() => {
-        localStorage.setItem('watched',JSON.stringify(watched));
-    }, [watched]);
+
 
     return (
         <main className="main">
